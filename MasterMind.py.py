@@ -33,7 +33,7 @@ class codecreator(object):
             }
         
 
-    def newcode(self):
+    def random_code(self):
         self.answer = [ guessoptions[d6()],guessoptions[d6()],guessoptions[d6()],guessoptions[d6()] ]
         
     def codereset(self):
@@ -47,11 +47,23 @@ class codecreator(object):
             "Yellow" : 0
             }
         
-    def customcode(self):
-        validinput = 0
-        while len(self.answer) < 4:
-            userinput = int(input(" 1= Red, 2 = Green, 3= Blue, 4 = Black, 5 = White, 6 = Yellow :"))
-            self.answer.append(guessoptions[userinput])
+    def custom_code(self):
+        self.codereset()
+        customguess = []
+        userinput = []
+        while len(customguess) < 4:
+            validinput = True
+            while validinput == True and len(customguess)<4:
+                userinput =raw_input(" 1= Red, 2 = Green, 3= Blue, 4 = Black, 5 = White, 6 = Yellow :")
+                ## use raw_input instead of input() http://stackoverflow.com/questions/4960208/python-2-7-getting-user-input-and-manipulating-as-string-without-quotations
+                print ("userinput =", userinput)
+                if userinput == "1" or userinput == "2" or userinput == "3" or userinput == "4" or userinput == "5" or userinput == "6":
+                    customguess.append(int(userinput))
+                    print (customguess)
+                else:
+                    print ("\nInvalid input. Please use numbers 1 to 6.")
+                    validinput = False
+        self.answer = [ guessoptions[customguess[0]], guessoptions[customguess[1]], guessoptions[customguess[2]], guessoptions[customguess[3]] ]
 
     def tally(self):
         for each in self.answer:
@@ -79,17 +91,17 @@ class codecreator(object):
 secret_code = codecreator()
 
 print (secret_code.answer)
-secret_code.newcode()
+secret_code.random_code()
 print (secret_code.answer)
-secret_code.newcode()
+secret_code.random_code()
 print (secret_code.answer)
 
 secret_code.tally()
-secret_code.codereset()
-secret_code.customcode()
+secret_code.custom_code()
 secret_code.tally()
-print ("New secret code is ", secret_code.answer, "the tally is ", secret_code.answercount)
-
+print (secret_code.answer)
+print (secret_code.answercount)
+                
 
 #####################
 
