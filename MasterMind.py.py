@@ -168,8 +168,9 @@ class codecreator(object):
         ### only tally EXACT MATCHES FIRST then decriment  answercount and guesscount accordingly
         ### the removal of answer count tally and guess count tally is necessary to compute color matches that aren't exact.
         ##
-        print ( "Before computation ran the tally of answer is :", self.answercount, "\n     and the tally of guess is ", self.guesscount)
+        #print ( "Before computation ran the tally of answer is :", self.answercount, "\n     and the tally of guess is ", self.guesscount)
         ##
+        ### Check for EXACT MATCHES. remove from count tally so they arent double counted as ###
         if self.answerfinal[0] == self.answer[0]:
             self.answercount[self.answerfinal[0]] -= 1
             self.guesscount[self.answerfinal[0]] -= 1
@@ -187,7 +188,46 @@ class codecreator(object):
             self.guesscount[self.answerfinal[2]] -= 1
             colorpeg.append("Black")
 
-        print ( "after computation ran the tally of answer is :", self.answercount, "\n     and the tally of guess is ", self.guesscount)
+        #print ( "after computation ran the tally of answer is :", self.answercount, "\n     and the tally of guess is ", self.guesscount)
+
+        #print ("cat", self.answercount["Red"] )
+
+        ### Check for color specific matches
+
+            ###RED
+        colorlooping = ["Red", "Green", "Blue", "Black", "White", "Yellow"]
+        for each in colorlooping:
+        if self.answercount["Red"] > 0 and self.answercount["Red"] == self.guesscount["Red"]:
+            while self.answercount["Red"] > 0:
+                colorpeg.append("White")
+                self.answercount["Red"] -= 1
+        elif self.answercount["Red"] > self.guesscount["Red"]:
+            while self.guesscount["Red"] > 0:
+                colorpeg.append("White")
+                self.guesscount["Red"] -= 1
+        elif self.answercount["Red"] > 0 and self.answercount["Red"] < self.guesscount["Red"]:
+            while self.answercount["Red"] > 0:
+                colorpeg.append("White")
+                self.answercount["Red"] -= 1
+
+        ## GREEN
+        if self.answercount["Green"] > 0 and self.answercount["Green"] == self.guesscount["Green"]:
+            while self.answercount["Green"] > 0:
+                colorpeg.append("White")
+                self.answercount["Green"] -= 1
+        elif self.answercount["Green"] > self.guesscount["Green"]:
+            while self.guesscount["Green"] > 0:
+                colorpeg.append("White")
+                self.guesscount["Green"] -= 1
+        elif self.answercount["Green"] > 0 and self.answercount["Green"] < self.guesscount["Green"]:
+            while self.answercount["Green"] > 0:
+                colorpeg.append("White")
+                self.answercount["Green"] -= 1
+
+        
+
+            
+
                 
                 
 
@@ -207,16 +247,16 @@ class codecreator(object):
 #####################
 
 secret_code = codecreator()
-secret_code.random_code()
+secret_code.custom_code()
 
 trycount = 10
 while trycount >0 and secret_code.winner == False:
     secret_code.guessing()
     secret_code.tally()
     secret_code.guesstally()
-    secret_code.guesstally()
     secret_code.wincheck()
     trycount -= 1
+    print ("the answer is ", secret_code.answer)
     
     
     
