@@ -3,10 +3,16 @@
 
 from random import randint
 import time
+import random
+
 
 def d6():
     return randint(1,6)
 
+def shuffle(x):
+    x = list(x)
+    random.shuffle(x)
+    return x
 
 guessoptions = {
     1 : "Red",
@@ -207,7 +213,10 @@ class codecreator(object):
                     self.answercount[each] -= 1            
             
         ########  I think there is a count bug in here somewhere ##
-        print ("the matches are\n: ", colorpeg, "\n\n")
+        shuffleclues = shuffle(colorpeg)
+        #print (colorpeg, shuffleclues)
+        print ("--------------------------------")
+        print ("the matches are ", shuffleclues, )
 
 ### Guessing code ###
 
