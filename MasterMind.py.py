@@ -183,63 +183,31 @@ class codecreator(object):
             self.answercount[self.answerfinal[2]] -= 1
             self.guesscount[self.answerfinal[2]] -= 1
             colorpeg.append("Black")
-        if self.answerfinal[2] == self.answer[2]:
-            self.answercount[self.answerfinal[2]] -= 1
-            self.guesscount[self.answerfinal[2]] -= 1
+        if self.answerfinal[3] == self.answer[3]:
+            self.answercount[self.answerfinal[3]] -= 1
+            self.guesscount[self.answerfinal[3]] -= 1
             colorpeg.append("Black")
-
-        #print ( "after computation ran the tally of answer is :", self.answercount, "\n     and the tally of guess is ", self.guesscount)
-
-        #print ("cat", self.answercount["Red"] )
 
         ### Check for color specific matches
 
-            ###RED
+            ###Just loop through
         colorlooping = ["Red", "Green", "Blue", "Black", "White", "Yellow"]
         for each in colorlooping:
-        if self.answercount["Red"] > 0 and self.answercount["Red"] == self.guesscount["Red"]:
-            while self.answercount["Red"] > 0:
-                colorpeg.append("White")
-                self.answercount["Red"] -= 1
-        elif self.answercount["Red"] > self.guesscount["Red"]:
-            while self.guesscount["Red"] > 0:
-                colorpeg.append("White")
-                self.guesscount["Red"] -= 1
-        elif self.answercount["Red"] > 0 and self.answercount["Red"] < self.guesscount["Red"]:
-            while self.answercount["Red"] > 0:
-                colorpeg.append("White")
-                self.answercount["Red"] -= 1
-
-        ## GREEN
-        if self.answercount["Green"] > 0 and self.answercount["Green"] == self.guesscount["Green"]:
-            while self.answercount["Green"] > 0:
-                colorpeg.append("White")
-                self.answercount["Green"] -= 1
-        elif self.answercount["Green"] > self.guesscount["Green"]:
-            while self.guesscount["Green"] > 0:
-                colorpeg.append("White")
-                self.guesscount["Green"] -= 1
-        elif self.answercount["Green"] > 0 and self.answercount["Green"] < self.guesscount["Green"]:
-            while self.answercount["Green"] > 0:
-                colorpeg.append("White")
-                self.answercount["Green"] -= 1
-
-        
-
-            
-
-                
-                
-
-   
-            
+            if self.answercount[each] > 0 and self.answercount[each] == self.guesscount[each]:
+                while self.answercount[each] > 0:
+                    colorpeg.append("White")
+                    self.answercount[each] -= 1
+            elif self.answercount[each] > self.guesscount[each]:
+                while self.guesscount[each] > 0:
+                    colorpeg.append("White")
+                    self.guesscount[each] -= 1
+            elif self.answercount[each] > 0 and self.answercount[each] < self.guesscount[each]:
+                while self.answercount[each] > 0:
+                    colorpeg.append("White")
+                    self.answercount[each] -= 1            
             
         ########  I think there is a count bug in here somewhere ##
         print ("the matches are\n: ", colorpeg, "\n\n")
-        print ("your guess for slot 0 was:", self.answerfinal[0], "the answer for slot zero is actually", self.answer[0], "and the remaining count is" , self.answercount[self.answerfinal[0]])
-        print ("your guess for slot 1 was:", self.answerfinal[1], "the answer for slot zero is actually", self.answer[1], "and the remaining count is" , self.answercount[self.answerfinal[1]])
-        print ("your guess for slot 2 was:", self.answerfinal[2], "the answer for slot zero is actually", self.answer[2], "and the remaining count is" , self.answercount[self.answerfinal[2]])
-        print ("your guess for slot 3 was:", self.answerfinal[3], "the answer for slot zero is actually", self.answer[3], "and the remaining count is" , self.answercount[self.answerfinal[3]])
 
 ### Guessing code ###
 
@@ -247,7 +215,7 @@ class codecreator(object):
 #####################
 
 secret_code = codecreator()
-secret_code.custom_code()
+secret_code.random_code()
 
 trycount = 10
 while trycount >0 and secret_code.winner == False:
@@ -256,7 +224,6 @@ while trycount >0 and secret_code.winner == False:
     secret_code.guesstally()
     secret_code.wincheck()
     trycount -= 1
-    print ("the answer is ", secret_code.answer)
     
     
     
