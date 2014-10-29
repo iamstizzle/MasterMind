@@ -262,6 +262,17 @@ while trycount >0 and secret_code.winner == False:
     for each in previousguesshint:
         print (each)
     trycount -= 1
+    time.sleep(2)
+    print ("\nYou have %s attempts remaining." %trycount)
+
+time.sleep(3)
+
+if secret_code.winner == True:
+    print ("Congratulations")
+elif secret_code.winner == False:
+    print ("Sorry you suck so bad at this. Goodbye.")
+
+time.sleep(3)
     
     
     
