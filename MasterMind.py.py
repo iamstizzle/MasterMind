@@ -193,6 +193,7 @@ class codecreator(object):
         if self.answerfinal == self.answer:
             print ("A Winner is YOU! All your BASE! etc...", self.answerfinal, self.answer)
             self.winner = True
+            self.colorpeg = ["Black", "Black", "Black", "Black"]
             return
         
         ### Count EXACT matches first
@@ -258,7 +259,8 @@ while trycount >0 and secret_code.winner == False:
     secret_code.wincheck()
     previousguesshint.append((secret_code.answerfinal, secret_code.colorpeg))
     print ("\nYour previous guesses and hints were:")
-    print (previousguesshint,)
+    for each in previousguesshint:
+        print (each)
     trycount -= 1
     
     
