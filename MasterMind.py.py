@@ -27,9 +27,7 @@ guessoptions = {
 
 class codecreator(object):
     def __init__(self):
-        self.name = 123
         self.winner = False
-        self.placeholder = []
         self.guess = []
         self.answer = []
         self.colorpeg = []
@@ -232,40 +230,33 @@ class codecreator(object):
                     self.colorpeg.append("White")
                     self.answercount[each] -= 1            
             
-        #Shuffle the match analysis results to make deducting the answer more difficult.
+        #Shuffle isn't actually necessary. just use self.colorpeg. Since the order is always Exact first then color matches, the order can't be reverse engineered.
         shuffleclues = shuffle(self.colorpeg)
         print ("--------------------------------")
-        print ("Your Hints are :", shuffleclues, )
+        print ("Your Hints are :", self.colorpeg )
 
 #----------------------------------------------            
 ############## SETUP END ######################
 #----------------------------------------------
-
-
               
-#####################
+########
 
 secret_code = codecreator()
 secret_code.random_code()
 previousguesshint = []
-
-
-
 trycount = 10
+
 while trycount >0 and secret_code.winner == False:
     secret_code.guessing()
     secret_code.tally()
     secret_code.guesstally()
     secret_code.wincheck()
     trycount -= 1
-    ###define a self.shuffleclues so you can randomize color peg for printing out the answer. Otherwise the shuffle is useless.
-    ### then use secret_code.shuffleclues instead of secret_code.colorpeg
     previousguesshint.append((secret_code.answerfinal, secret_code.colorpeg, trycount) )
-    print ("asdfasfadsfadfadsfs")
-    print ("\nYour previous guesses and hints were:")
+    print ("\n------------------------------\nYour previous guesses and hints were:")
     for each in previousguesshint:
         print ("Guess #%s: %s  matches:: %s" % ((10 - each[2]), each[0], each[1]) )
-    time.sleep(2)
+    time.sleep(1)
     if secret_code.winner == False:
         print ("\nYou have %s attempts remaining." %trycount)
     if trycount ==4:
@@ -273,17 +264,16 @@ while trycount >0 and secret_code.winner == False:
         print ("\n-----------\nPRO TIP: You often get more information by confirming incorrect guesses than you do with correct ones.\n-----------\n")
         time.sleep(3)
 
-time.sleep(3)
 
+time.sleep(2)
 if secret_code.winner == True:
     print ("Congratulations")
     print ("A Winner is YOU! All your BASE! etc...\nYou guessed the answer %s" % secret_code.answer)
 elif secret_code.winner == False:
     print ("Sorry you suck so bad at this. Goodbye.")
-
 time.sleep(3)
     
-    
+#########  
     
 
 
