@@ -166,26 +166,6 @@ class codecreator(object):
                 self.guesscount["Yellow"] +=1
 
 
-    """def guessing(self):
-        answerguess = []
-        answerfinal = []
-        userinput = []
-        while len(answerguess) < 4:
-            validinput = True
-            while validinput == True and len(answerguess)<4:
-                userinput =raw_input("Your Guess options are:\n1= Red, 2 = Green, 3= Blue, 4 = Black, 5 = White, 6 = Yellow\nPlease enter a number: ")
-                ## use raw_input instead of input() http://stackoverflow.com/questions/4960208/python-2-7-getting-user-input-and-manipulating-as-string-without-quotations
-                #print ("user guess  =", userinput)
-                if userinput == "1" or userinput == "2" or userinput == "3" or userinput == "4" or userinput == "5" or userinput == "6":
-                    answerguess.append(int(userinput))
-                    print (answerguess)
-                else:
-                    print ("\nInvalid input. Please use numbers 1 to 6.")
-                    validinput = False
-        # Now convert those stored values into the actual guess
-        self.answerfinal = [ guessoptions[answerguess[0]], guessoptions[answerguess[1]], guessoptions[answerguess[2]], guessoptions[answerguess[3]] ]
-        print(self.answerfinal)"""
-
     def wincheck(self):
         self.winner = False
         self.colorpeg = []
