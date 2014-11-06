@@ -100,9 +100,11 @@ class codecreator(object):
         while len(answerguess) < 4:
             validinput = True
             while validinput == True and len(answerguess)<4:
-                userinput =raw_input("Your Guess options are:  1= Red, 2 = Green, 3= Blue, 4 = Black, 5 = White, 6 = Yellow :")
+                if len(answerguess)==0:
+                    print ("Your Guess options are:  1= Red, 2 = Green, 3= Blue, 4 = Black, 5 = White, 6 = Yellow ")
+                userinput =raw_input("Peg %s choice: " % (len(answerguess)+1) )
                 ## use raw_input instead of input() http://stackoverflow.com/questions/4960208/python-2-7-getting-user-input-and-manipulating-as-string-without-quotations
-                print ("user guess  =", userinput)
+                #print ("user guess  =", userinput)
                 if userinput == "1" or userinput == "2" or userinput == "3" or userinput == "4" or userinput == "5" or userinput == "6":
                     answerguess.append(int(userinput))
                     print (answerguess)
@@ -164,7 +166,7 @@ class codecreator(object):
                 self.guesscount["Yellow"] +=1
 
 
-    def guessing(self):
+    """def guessing(self):
         answerguess = []
         answerfinal = []
         userinput = []
@@ -182,7 +184,7 @@ class codecreator(object):
                     validinput = False
         # Now convert those stored values into the actual guess
         self.answerfinal = [ guessoptions[answerguess[0]], guessoptions[answerguess[1]], guessoptions[answerguess[2]], guessoptions[answerguess[3]] ]
-        print(self.answerfinal)
+        print(self.answerfinal)"""
 
     def wincheck(self):
         self.winner = False
